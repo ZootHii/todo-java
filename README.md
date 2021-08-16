@@ -1,3 +1,3 @@
 # iwb-todo-java
 
-Heroku : https://iwbtodojava.herokuapp.com/swagger-ui.html#/
+Heroku : https://iwb-todo-java.herokuapp.com/swagger-ui.html#/
