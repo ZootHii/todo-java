@@ -1,0 +1,12 @@
+//Proje heroku üzerinde deploy edilmiştir LINK üzerinden ulaşabilirsiniz
+
+//DATABASE docker üzerinden postgresql çalıştırıyoruz
+docker run --name postgres-server -p 5432:5432 -e POSTGRES_USER=root -e POSTGRES_PASSWORD=1234 -d postgres
+docker run -p 80:80 --name pgadmin -e PGADMIN_DEFAULT_EMAIL="ahmet.zoothii@gmail.com" -e PGADMIN_DEFAULT_PASSWORD="1234" dpage/pgadmin4
+
+// http://localhost:80/ üzerinden pg admin giriş yaptıktan sonra server bağlantısı için hostname
+host.docker.internal
+
+//ardından iwb_todo adından bir database oluşturuyoruz definition kısmı ekran görüntüsünde gösterildiği şekilde giriyoruz
+
+// githubtan pullamış olduğumuz projeyi çalıştırmamız yeterli
