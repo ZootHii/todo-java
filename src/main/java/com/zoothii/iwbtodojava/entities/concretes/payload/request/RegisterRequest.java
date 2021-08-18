@@ -15,7 +15,13 @@ public class RegisterRequest {
     @NotBlank
     @Size(min = 3, max = 20)
     private String username;
- 
+
+    @NotBlank
+    // TODO activate later
+    @Pattern(regexp = "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{8,20}$",
+            message = "one special character '@#$%', one number, one lowercase character, one UPPERCASE character, less than 20 and more than 8 characters")
+    private String password;
+
     @NotBlank
     @Size(max = 50)
     @Email
@@ -23,8 +29,4 @@ public class RegisterRequest {
 
     private Set<String> roles;
 
-    @NotBlank
-    //@Size(min = 6, max = 40)
-    // TODO activate later @Pattern(regexp = "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{8,20}$", message = "one special character among @#$%, one number, one lowercase character, one uppercase character, less than 20 and more than 8 characters")
-    private String password;
 }

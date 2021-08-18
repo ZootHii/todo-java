@@ -21,6 +21,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashSet;
 import java.util.List;
@@ -47,6 +48,7 @@ public class AuthManager implements AuthService {
     }
 
     @Override
+    @Transactional
     public DataResult<AuthResponse> register(RegisterRequest registerRequest) {
 
         var resultUsernameExists = userService.checkIfUsernameExists(registerRequest.getUsername());
@@ -81,6 +83,7 @@ public class AuthManager implements AuthService {
     }
 
     @Override
+    @Transactional
     public DataResult<AuthResponse> login(LoginRequest loginRequest) {
         // check username exist from service
         var resultUserNameExists = userService.checkIfUsernameExists(loginRequest.getUsername());

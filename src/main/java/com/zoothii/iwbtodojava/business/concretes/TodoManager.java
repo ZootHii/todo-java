@@ -29,6 +29,7 @@ public class TodoManager implements TodoService {
     @Override
     @Cacheable(value = "ten-seconds-cache", key = "'todos-cache'")
     @PreAuthorize("hasAnyRole('USER')")
+    @Transactional
     public DataResult<List<Todo>> getTodos() throws InterruptedException {
         Thread.sleep(1000);
         var resultAuthenticatedUserDetails = authManager.getAuthenticatedUserDetails();
@@ -40,6 +41,7 @@ public class TodoManager implements TodoService {
     }
 
     @Override
+    @Transactional
     public DataResult<List<Todo>> getAllTodos() {
         return new SuccessDataResult<>(todoDao.findAll());
     }
@@ -47,6 +49,7 @@ public class TodoManager implements TodoService {
     @Override
     @CacheEvict(value = "ten-seconds-cache", key = "'todos-cache'", condition = "#result.success")
     @PreAuthorize("hasAnyRole('USER')")
+    @Transactional
     public Result createTodo(Todo todo) {
         var resultAuthenticatedUserDetails = authManager.getAuthenticatedUserDetails();
         if (!resultAuthenticatedUserDetails.isSuccess()) {
@@ -62,6 +65,7 @@ public class TodoManager implements TodoService {
     @Override
     @CacheEvict(value = "ten-seconds-cache", key = "'todos-cache'", condition = "#result.success")
     @PreAuthorize("hasAnyRole('USER')")
+    @Transactional
     public Result deleteTodo(Long todoId) {
         var resultAuthenticatedUserDetails = authManager.getAuthenticatedUserDetails();
         if (!resultAuthenticatedUserDetails.isSuccess()) {
@@ -88,6 +92,7 @@ public class TodoManager implements TodoService {
     @Override
     @CacheEvict(value = "ten-seconds-cache", key = "'todos-cache'", condition = "#result.success")
     @PreAuthorize("hasAnyRole('USER')")
+    @Transactional
     public Result updateTodo(Todo todo) {
         Result resultAuthenticatedUserDetails = getResult(todo);
         if (resultAuthenticatedUserDetails != null) return resultAuthenticatedUserDetails;

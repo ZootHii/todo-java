@@ -40,6 +40,7 @@ public class UserManager implements UserService, UserDetailsService {
 
     @Override
     @Cacheable(value = "ten-seconds-cache", key = "'users-cache'")
+    @Transactional
     public DataResult<List<User>> getUsers() {
         return new SuccessDataResult<>(this.userDao.findAll());
     }

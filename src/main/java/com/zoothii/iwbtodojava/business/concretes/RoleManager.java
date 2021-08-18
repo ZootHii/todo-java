@@ -11,6 +11,7 @@ import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -34,6 +35,7 @@ public class RoleManager implements RoleService {
     @Override
     @PreAuthorize("hasAnyRole('BEN','ADMIN')")
     @CacheEvict(value = "ten-seconds-cache", key = "'roles-cache'", condition = "#result.success")
+    @Transactional
     // result.success condition works
     public Result createRole(Role role) {
         var resultRoleExists = checkIfRoleExistsByName(role.getName());
@@ -48,6 +50,7 @@ public class RoleManager implements RoleService {
     @Override
     @PreAuthorize("hasAnyRole('BEN','ADMIN')")
     @CacheEvict(value = "ten-seconds-cache", key = "'roles-cache'", condition = "#result.success")
+    @Transactional
     public Result deleteRole(Long roleId) {
         var roleToDelete = roleDao.findById(roleId);
         if (roleToDelete.isEmpty()) {
