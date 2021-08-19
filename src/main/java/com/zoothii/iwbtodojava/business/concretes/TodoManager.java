@@ -15,7 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-@CacheConfig(cacheNames = {"todos"})
+//@CacheConfig(cacheNames = {"todos"})
 public class TodoManager implements TodoService {
 
     private final TodoDao todoDao;
@@ -27,7 +27,7 @@ public class TodoManager implements TodoService {
     }
 
     @Override
-    @Cacheable(value = "ten-seconds-cache", key = "'todos-cache'")
+    //@Cacheable(value = "ten-seconds-cache", key = "'todos-cache'")
     @PreAuthorize("hasAnyRole('USER')")
     @Transactional
     public DataResult<List<Todo>> getTodos() throws InterruptedException {
@@ -47,7 +47,7 @@ public class TodoManager implements TodoService {
     }
 
     @Override
-    @CacheEvict(value = "ten-seconds-cache", key = "'todos-cache'", condition = "#result.success")
+    //@CacheEvict(value = "ten-seconds-cache", key = "'todos-cache'", condition = "#result.success")
     @PreAuthorize("hasAnyRole('USER')")
     @Transactional
     public Result createTodo(Todo todo) {
@@ -63,7 +63,7 @@ public class TodoManager implements TodoService {
     }
 
     @Override
-    @CacheEvict(value = "ten-seconds-cache", key = "'todos-cache'", condition = "#result.success")
+    //@CacheEvict(value = "ten-seconds-cache", key = "'todos-cache'", condition = "#result.success")
     @PreAuthorize("hasAnyRole('USER')")
     @Transactional
     public Result deleteTodo(Long todoId) {
@@ -90,7 +90,7 @@ public class TodoManager implements TodoService {
     }
 
     @Override
-    @CacheEvict(value = "ten-seconds-cache", key = "'todos-cache'", condition = "#result.success")
+    //@CacheEvict(value = "ten-seconds-cache", key = "'todos-cache'", condition = "#result.success")
     @PreAuthorize("hasAnyRole('USER')")
     @Transactional
     public Result updateTodo(Todo todo) {
