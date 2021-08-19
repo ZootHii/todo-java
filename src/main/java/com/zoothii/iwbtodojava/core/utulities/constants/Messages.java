@@ -8,9 +8,12 @@ public class Messages {
     public static String successLogin = "User logged in successfully.";
     public static String successPassword = "Password is correct.";
     public static String errorPassword = "Password is not correct.";
+    public static String successSetRequestedRolesStringToRole = "Roles successfully set.";
+    public static String errorGetAuthenticatedUserDetails = "Please log in.";
+    public static String successGetAuthenticatedUserDetails = "Owner.";
 
     public static String errorCreateDefaultRoleIfNotExists(String defaultRole) {
-        return "Default role " + defaultRole + " is already exists.";
+        return "Default role " + defaultRole + " already exists.";
     }
 
     public static String successCreateDefaultRoleIfNotExists(String defaultRole) {
@@ -18,10 +21,10 @@ public class Messages {
     }
 
     public static String successCheckIfRoleExists(String role) {
-        return "Role " + role + " is exists.";
+        return "Role " + role + " exists.";
     }
 
     public static String errorCheckIfRoleExists(String role) {
-        return "Role " + role + " is not exists.";
+        return "Role " + role + " does not exist.";
     }
 }

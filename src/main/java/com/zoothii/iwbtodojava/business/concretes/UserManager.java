@@ -131,18 +131,18 @@ public class UserManager implements UserService, UserDetailsService {
     public Result checkIfUsernameExists(String username) {
         var user = this.userDao.getUserByUsername(username);
         if (user == null) {
-            return new ErrorResult("Username is not exists.");
+            return new ErrorResult("Username does not exist.");
         }
-        return new SuccessResult("Username is exists.");
+        return new SuccessResult("Username already exists.");
     }
 
     @Override
     public Result checkIfEmailExists(String email) {
         User user = this.userDao.getUserByEmail(email);
         if (user == null) {
-            return new ErrorResult("Email is not exists.");
+            return new ErrorResult("Email does not exist.");
         }
-        return new SuccessResult("Email is exists.");
+        return new SuccessResult("Email already exists.");
     }
 
     @Override

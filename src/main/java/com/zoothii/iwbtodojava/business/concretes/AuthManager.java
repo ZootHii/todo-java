@@ -115,9 +115,9 @@ public class AuthManager implements AuthService {
         try {
             Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
             User userDetails = (User) authentication.getPrincipal();
-            return new SuccessDataResult<>(userDetails, "owner");
+            return new SuccessDataResult<>(userDetails, Messages.successGetAuthenticatedUserDetails);
         } catch (ClassCastException classCastException) {
-            return new ErrorDataResult<>("pls login");
+            return new ErrorDataResult<>(Messages.errorGetAuthenticatedUserDetails);
         }
     }
 
@@ -149,7 +149,7 @@ public class AuthManager implements AuthService {
             }
         }
 
-        return new SuccessDataResult<>(requestedRoles, "roles set");
+        return new SuccessDataResult<>(requestedRoles, Messages.successSetRequestedRolesStringToRole);
     }
 
     // authenticate user and return jwt as response

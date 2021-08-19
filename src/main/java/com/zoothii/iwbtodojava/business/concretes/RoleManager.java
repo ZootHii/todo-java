@@ -54,7 +54,7 @@ public class RoleManager implements RoleService {
     public Result deleteRole(Long roleId) {
         var roleToDelete = roleDao.findById(roleId);
         if (roleToDelete.isEmpty()) {
-            return new ErrorResult("roles is not exists");
+            return new ErrorResult(Messages.errorCheckIfRoleExists(""));
         }
 
         roleDao.deleteById(roleId);
